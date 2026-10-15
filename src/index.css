@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 5 7 12;
+    --panel: 8 13 21;
+    --border: 24 35 53;
+    --text: 226 232 240;
+    --muted: 148 163 184;
+    --accent: 74 222 128;
+  }
+
+  * {
+    border-color: rgb(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 text-slate-200 antialiased;
+    background-image:
+      radial-gradient(900px 500px at 12% -10%, rgba(74, 222, 128, 0.09), transparent 60%),
+      radial-gradient(800px 520px at 92% 0%, rgba(56, 189, 248, 0.08), transparent 62%);
+    background-attachment: fixed;
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background: rgba(74, 222, 128, 0.28);
+  }
+
+  code,
+  pre,
+  kbd {
+    font-variant-ligatures: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.22);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.4);
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-ink-700/70 bg-ink-900/70 backdrop-blur-sm;
+  }
+
+  .panel-header {
+    @apply flex items-center justify-between gap-4 border-b border-ink-700/60 px-5 py-4;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-ink-600/70 bg-ink-800/60 px-2.5 py-1 font-mono text-[11px] tracking-tight text-slate-300;
+  }
+
+  .kbd {
+    @apply rounded-md border border-ink-600 bg-ink-800 px-1.5 py-0.5 font-mono text-[11px] text-slate-400;
+  }
+
+  .link-underline {
+    @apply underline decoration-signal/40 decoration-1 underline-offset-4 transition hover:decoration-signal;
+  }
+
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-signal/60 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
+  }
+
+  .grid-bg {
+    @apply bg-grid [background-size:44px_44px];
+  }
+}

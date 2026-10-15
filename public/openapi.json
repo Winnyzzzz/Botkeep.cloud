@@ -1,0 +1,5453 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Botkeep Developer API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/developer/capabilities": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Capabilities",
+        "operationId": "capabilities_api_v1_developer_capabilities_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "workloads:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Workloads",
+        "operationId": "workloads_api_v1_developer_workloads_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "workloads:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Create",
+        "operationId": "create_api_v1_developer_workloads_post",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 16,
+              "maxLength": 64,
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "workloads:create"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/plan": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Plan",
+        "operationId": "plan_api_v1_developer_plan_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "plan:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/projects": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Projects",
+        "operationId": "projects_api_v1_developer_projects_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "projects:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/projects/actions": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Update",
+        "operationId": "update_api_v1_developer_projects_actions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Command"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "projects:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/developer/operations/{operation_id}": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Operation",
+        "operationId": "operation_api_v1_developer_operations__operation_id__get",
+        "parameters": [
+          {
+            "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Operation Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "workloads:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/requests/{request_id}": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Receipt",
+        "operationId": "receipt_api_v1_developer_requests__request_id__get",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/environment": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Environment",
+        "operationId": "environment_api_v1_developer_workloads__workload_id__environment_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "environment:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Environment",
+        "operationId": "environment_api_v1_developer_workloads__workload_id__environment_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "environment:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/logs": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Logs",
+        "operationId": "logs_api_v1_developer_workloads__workload_id__logs_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "lines",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 100,
+              "title": "Lines"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "logs:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Get Bot",
+        "operationId": "get_bot_api_v1_developer_workloads__workload_id__get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "workloads:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/actions": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Action",
+        "operationId": "action_api_v1_developer_workloads__workload_id__actions_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Action"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "power:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/resources": {
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Resources",
+        "operationId": "resources_api_v1_developer_workloads__workload_id__resources_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Resources"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "workloads:update"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/settings": {
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Update Settings",
+        "operationId": "update_settings_api_v1_developer_workloads__workload_id__settings_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "settings:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/startup-check": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Startup Check",
+        "operationId": "startup_check_api_v1_developer_workloads__workload_id__startup_check_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "settings:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/files": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Files",
+        "operationId": "files_api_v1_developer_workloads__workload_id__files_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "directory",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "/",
+              "title": "Directory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/file": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "File Contents",
+        "operationId": "file_contents_api_v1_developer_workloads__workload_id__file_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "path",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Save File",
+        "operationId": "save_file_api_v1_developer_workloads__workload_id__file_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FileInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/file-action": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "File Action",
+        "operationId": "file_action_api_v1_developer_workloads__workload_id__file_action_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FileAction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/environment/{key}": {
+      "delete": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Delete Environment",
+        "operationId": "delete_environment_api_v1_developer_workloads__workload_id__environment__key__delete",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Key"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "environment:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/environment/raw/preview": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Preview Raw Environment",
+        "operationId": "preview_raw_environment_api_v1_developer_workloads__workload_id__environment_raw_preview_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RawEnvironmentInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "environment:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/environment/raw": {
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Save Raw Environment",
+        "operationId": "save_raw_environment_api_v1_developer_workloads__workload_id__environment_raw_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RawEnvironmentInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "environment:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/billing": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Billing",
+        "operationId": "billing_api_v1_developer_billing_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "billing:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/network": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Network",
+        "operationId": "network_api_v1_developer_workloads__workload_id__network_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Network Api V1 Developer Workloads  Workload Id  Network Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "workloads:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/packages": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Packages",
+        "operationId": "packages_api_v1_developer_workloads__workload_id__packages_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Packages Api V1 Developer Workloads  Workload Id  Packages Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "packages:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Save Packages",
+        "operationId": "save_packages_api_v1_developer_workloads__workload_id__packages_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManifestInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Save Packages Api V1 Developer Workloads  Workload Id  Packages Put"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "packages:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/runtime": {
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Change Runtime",
+        "operationId": "change_runtime_api_v1_developer_workloads__workload_id__runtime_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RuntimeInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Change Runtime Api V1 Developer Workloads  Workload Id  Runtime Put"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "settings:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/files/upload-batch": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Upload Batch",
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel.",
+        "operationId": "upload_batch_api_v1_developer_workloads__workload_id__files_upload_batch_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadBatchInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:write"
+        ]
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/files/upload": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Upload",
+        "operationId": "upload_api_v1_developer_workloads__workload_id__files_upload_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/files/batch": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Batch",
+        "operationId": "batch_api_v1_developer_workloads__workload_id__files_batch_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/files/download": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Download",
+        "operationId": "download_api_v1_developer_workloads__workload_id__files_download_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "path",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Path"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/files/export": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Export",
+        "operationId": "export_api_v1_developer_workloads__workload_id__files_export_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "directory",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "/",
+              "title": "Directory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/files/extract/preview": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Preview",
+        "operationId": "preview_api_v1_developer_workloads__workload_id__files_extract_preview_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchiveInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/files/extract": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Extract",
+        "operationId": "extract_api_v1_developer_workloads__workload_id__files_extract_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtractInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "files:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/backups": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Create",
+        "operationId": "create_api_v1_developer_workloads__workload_id__backups_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BackupInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "backups:create"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Server Backups",
+        "operationId": "server_backups_api_v1_developer_workloads__workload_id__backups_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "backups:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/backups/{backup_id}": {
+      "delete": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Delete",
+        "operationId": "delete_api_v1_developer_workloads__workload_id__backups__backup_id__delete",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "backup_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Backup Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "backups:delete"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/backups/{backup_id}/restore": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Restore",
+        "operationId": "restore_api_v1_developer_workloads__workload_id__backups__backup_id__restore_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "backup_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Backup Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestoreInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Restore Api V1 Developer Workloads  Workload Id  Backups  Backup Id  Restore Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "backups:restore"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/backups/reconcile": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Reconcile Backup",
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel.",
+        "operationId": "reconcile_backup_api_v1_developer_workloads__workload_id__backups_reconcile_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "backups:create"
+        ]
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/backups/{backup_id}/download": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Download",
+        "operationId": "download_api_v1_developer_workloads__workload_id__backups__backup_id__download_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "backup_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Backup Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "backups:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/domain/alias": {
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Set Alias",
+        "operationId": "set_alias_api_v1_developer_workloads__workload_id__domain_alias_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AliasInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "delete": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Remove Alias",
+        "operationId": "remove_alias_api_v1_developer_workloads__workload_id__domain_alias_delete",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/domain/custom": {
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Attach Custom",
+        "operationId": "attach_custom_api_v1_developer_workloads__workload_id__domain_custom_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "delete": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Detach Custom",
+        "operationId": "detach_custom_api_v1_developer_workloads__workload_id__domain_custom_delete",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/domain/wildcard": {
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Attach Wildcard",
+        "operationId": "attach_wildcard_api_v1_developer_workloads__workload_id__domain_wildcard_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "delete": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Detach Wildcard",
+        "operationId": "detach_wildcard_api_v1_developer_workloads__workload_id__domain_wildcard_delete",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/domain/custom/verify": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Verify Custom",
+        "operationId": "verify_custom_api_v1_developer_workloads__workload_id__domain_custom_verify_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/domain/wildcard/verify": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Verify Wildcard",
+        "operationId": "verify_wildcard_api_v1_developer_workloads__workload_id__domain_wildcard_verify_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/domain": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Domain",
+        "operationId": "domain_api_v1_developer_workloads__workload_id__domain_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Domain Api V1 Developer Workloads  Workload Id  Domain Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Configure",
+        "operationId": "configure_api_v1_developer_workloads__workload_id__domain_put",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DomainInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Configure Api V1 Developer Workloads  Workload Id  Domain Put"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "domains:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/github": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Get Source",
+        "operationId": "get_source_api_v1_developer_workloads__workload_id__github_get",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "settings:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "patch": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Toggle",
+        "operationId": "toggle_api_v1_developer_workloads__workload_id__github_patch",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToggleInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "deploy:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "delete": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Unlink",
+        "operationId": "unlink_api_v1_developer_workloads__workload_id__github_delete",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevisionInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "deploy:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/github/inspect": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Inspect",
+        "operationId": "inspect_api_v1_developer_workloads__workload_id__github_inspect_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InspectInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "deploy:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/github/sync": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Sync",
+        "operationId": "sync_api_v1_developer_workloads__workload_id__github_sync_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SyncInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "deploy:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/github/recover": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Recover",
+        "operationId": "recover_api_v1_developer_workloads__workload_id__github_recover_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecoverInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "deploy:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/workloads/{workload_id}/console/command": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Send Command",
+        "operationId": "send_command_api_v1_developer_workloads__workload_id__console_command_post",
+        "parameters": [
+          {
+            "name": "workload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Workload Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsoleCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "boolean"
+                  },
+                  "title": "Response Send Command Api V1 Developer Workloads  Workload Id  Console Command Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "console:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/tickets": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Customer List",
+        "operationId": "customer_list_api_v1_developer_tickets_get",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "all",
+                "open",
+                "pending",
+                "closed"
+              ],
+              "type": "string",
+              "default": "all",
+              "title": "Status"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 180,
+              "default": "",
+              "title": "Q"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100000,
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "tickets:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Customer Create",
+        "operationId": "customer_create_api_v1_developer_tickets_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewTicket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "tickets:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/developer/tickets/{ticket_id}": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Customer Detail",
+        "operationId": "customer_detail_api_v1_developer_tickets__ticket_id__get",
+        "parameters": [
+          {
+            "name": "ticket_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticket Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "tickets:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/tickets/{ticket_id}/messages": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Customer Reply",
+        "operationId": "customer_reply_api_v1_developer_tickets__ticket_id__messages_post",
+        "parameters": [
+          {
+            "name": "ticket_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticket Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reply"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "tickets:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/tickets/{ticket_id}/messages/upload": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Customer Upload",
+        "operationId": "customer_upload_api_v1_developer_tickets__ticket_id__messages_upload_post",
+        "parameters": [
+          {
+            "name": "ticket_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticket Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "tickets:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/tickets/{ticket_id}/status": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Customer Status",
+        "operationId": "customer_status_api_v1_developer_tickets__ticket_id__status_post",
+        "parameters": [
+          {
+            "name": "ticket_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticket Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "tickets:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/tickets/{ticket_id}/attachments/{attachment_id}": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Customer Attachment",
+        "operationId": "customer_attachment_api_v1_developer_tickets__ticket_id__attachments__attachment_id__get",
+        "parameters": [
+          {
+            "name": "ticket_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Ticket Id"
+            }
+          },
+          {
+            "name": "attachment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Attachment Id"
+            }
+          },
+          {
+            "name": "preview",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Preview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "tickets:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/permissions/{scope}/{target_id}/members": {
+      "get": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Members",
+        "operationId": "members_api_v1_developer_permissions__scope___target_id__members_get",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "bot",
+                "project"
+              ],
+              "type": "string",
+              "title": "Scope"
+            }
+          },
+          {
+            "name": "target_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Target Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "permissions:read"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      },
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Invite",
+        "operationId": "invite_api_v1_developer_permissions__scope___target_id__members_post",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "bot",
+                "project"
+              ],
+              "type": "string",
+              "title": "Scope"
+            }
+          },
+          {
+            "name": "target_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Target Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Invite"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "permissions:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/permissions/{scope}/{target_id}/members/{grant_id}": {
+      "put": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Change",
+        "operationId": "change_api_v1_developer_permissions__scope___target_id__members__grant_id__put",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "bot",
+                "project"
+              ],
+              "type": "string",
+              "title": "Scope"
+            }
+          },
+          {
+            "name": "target_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Target Id"
+            }
+          },
+          {
+            "name": "grant_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Grant Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Change"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "permissions:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    },
+    "/api/v1/developer/permissions/{scope}/{target_id}/members/{grant_id}/revoke": {
+      "post": {
+        "tags": [
+          "developer"
+        ],
+        "summary": "Revoke",
+        "operationId": "revoke_api_v1_developer_permissions__scope___target_id__members__grant_id__revoke_post",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "bot",
+                "project"
+              ],
+              "type": "string",
+              "title": "Scope"
+            }
+          },
+          {
+            "name": "target_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Target Id"
+            }
+          },
+          {
+            "name": "grant_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Grant Id"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{16,64}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Revision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BotkeepKey": []
+          }
+        ],
+        "x-botkeep-scopes": [
+          "permissions:write"
+        ],
+        "description": "Bearer key required. Same customer quotas and infrastructure guards as the panel."
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Action": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "start",
+              "stop",
+              "restart",
+              "kill",
+              "redeploy",
+              "delete",
+              "retry"
+            ],
+            "title": "Action"
+          },
+          "confirmKill": {
+            "type": "boolean",
+            "title": "Confirmkill",
+            "default": false
+          },
+          "confirmRedeploy": {
+            "type": "boolean",
+            "title": "Confirmredeploy",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "Action"
+      },
+      "AliasInput": {
+        "properties": {
+          "alias": {
+            "type": "string",
+            "maxLength": 63,
+            "minLength": 3,
+            "title": "Alias"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "alias"
+        ],
+        "title": "AliasInput"
+      },
+      "ArchiveInput": {
+        "properties": {
+          "path": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Path"
+          },
+          "destination": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Destination",
+            "default": "/"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "path"
+        ],
+        "title": "ArchiveInput"
+      },
+      "BackupInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Name"
+          },
+          "requestId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requestid"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "BackupInput"
+      },
+      "BatchInput": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "pattern": "^(delete|move|copy)$",
+            "title": "Action"
+          },
+          "paths": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Paths"
+          },
+          "destination": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action",
+          "paths"
+        ],
+        "title": "BatchInput"
+      },
+      "Change": {
+        "properties": {
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "Revision"
+          },
+          "permissions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "console",
+                "power",
+                "files",
+                "environment",
+                "startup",
+                "backups",
+                "database",
+                "domains"
+              ]
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Permissions"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "revision",
+          "permissions"
+        ],
+        "title": "Change"
+      },
+      "Command": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Action"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 128,
+            "title": "Id",
+            "default": ""
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Name",
+            "default": ""
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Description",
+            "default": ""
+          },
+          "projectId": {
+            "type": "string",
+            "maxLength": 64,
+            "title": "Projectid",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "Command"
+      },
+      "ConsoleCommand": {
+        "properties": {
+          "command": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Command"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "command"
+        ],
+        "title": "ConsoleCommand"
+      },
+      "Create": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 2,
+            "pattern": "^[\\w .-]+$",
+            "title": "Name"
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "discord",
+              "telegram",
+              "general"
+            ],
+            "title": "Platform"
+          },
+          "runtime": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Runtime"
+          },
+          "runtimeVersion": {
+            "type": "string",
+            "maxLength": 30,
+            "title": "Runtimeversion"
+          },
+          "sourceType": {
+            "type": "string",
+            "enum": [
+              "github",
+              "zip",
+              "blank"
+            ],
+            "title": "Sourcetype"
+          },
+          "repository": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Repository"
+          },
+          "archiveName": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archivename"
+          },
+          "branch": {
+            "type": "string",
+            "pattern": "^[\\w./-]{1,100}$",
+            "title": "Branch",
+            "default": "main"
+          },
+          "startCommand": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Startcommand"
+          },
+          "resources": {
+            "$ref": "#/components/schemas/Resources"
+          },
+          "templateId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Templateid"
+          },
+          "tokenProvided": {
+            "type": "boolean",
+            "title": "Tokenprovided",
+            "default": false
+          },
+          "token": {
+            "type": "string",
+            "maxLength": 4096,
+            "title": "Token",
+            "default": ""
+          },
+          "archiveBase64": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 8000000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archivebase64"
+          },
+          "seedFiles": {
+            "items": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Seedfiles"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "platform",
+          "runtime",
+          "runtimeVersion",
+          "sourceType",
+          "startCommand",
+          "resources"
+        ],
+        "title": "Create"
+      },
+      "CustomInput": {
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "maxLength": 253,
+            "minLength": 1,
+            "title": "Hostname"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "hostname"
+        ],
+        "title": "CustomInput"
+      },
+      "CustomerStatus": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "closed"
+            ],
+            "title": "Status"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "revision"
+        ],
+        "title": "CustomerStatus"
+      },
+      "DomainInput": {
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "enabled"
+        ],
+        "title": "DomainInput"
+      },
+      "EnvironmentInput": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "key": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,79}$",
+            "title": "Key"
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 8192,
+            "title": "Value"
+          },
+          "isSecret": {
+            "type": "boolean",
+            "title": "Issecret"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "value",
+          "isSecret"
+        ],
+        "title": "EnvironmentInput"
+      },
+      "ExtractInput": {
+        "properties": {
+          "path": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Path"
+          },
+          "destination": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Destination",
+            "default": "/"
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Revision"
+          },
+          "overwrite": {
+            "type": "boolean",
+            "title": "Overwrite",
+            "default": false
+          },
+          "processed": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 250,
+            "title": "Processed"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "path",
+          "revision"
+        ],
+        "title": "ExtractInput"
+      },
+      "FileAction": {
+        "properties": {
+          "path": {
+            "type": "string",
+            "title": "Path"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "path"
+        ],
+        "title": "FileAction"
+      },
+      "FileInput": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "default": ""
+          },
+          "path": {
+            "type": "string",
+            "title": "Path"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "file",
+              "folder"
+            ],
+            "title": "Type"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 500000,
+            "title": "Content",
+            "default": ""
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          },
+          "createOnly": {
+            "type": "boolean",
+            "title": "Createonly",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "path",
+          "type"
+        ],
+        "title": "FileInput"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "InspectInput": {
+        "properties": {
+          "repository": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 3,
+            "title": "Repository"
+          },
+          "branch": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Branch",
+            "default": ""
+          },
+          "access": {
+            "type": "string",
+            "enum": [
+              "public",
+              "connection"
+            ],
+            "title": "Access",
+            "default": "public"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "repository"
+        ],
+        "title": "InspectInput"
+      },
+      "Invite": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "permissions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "console",
+                "power",
+                "files",
+                "environment",
+                "startup",
+                "backups",
+                "database",
+                "domains"
+              ]
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Permissions"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "email",
+          "permissions"
+        ],
+        "title": "Invite"
+      },
+      "ManifestInput": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "maxLength": 100000,
+            "title": "Content"
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "content",
+          "revision"
+        ],
+        "title": "ManifestInput"
+      },
+      "NewTicket": {
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Requestid"
+          },
+          "subject": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 3,
+            "title": "Subject"
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 5000,
+            "minLength": 10,
+            "title": "Body"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "general",
+              "technical",
+              "billing",
+              "account"
+            ],
+            "title": "Category",
+            "default": "general"
+          },
+          "serverId": {
+            "type": "string",
+            "maxLength": 36,
+            "title": "Serverid",
+            "default": ""
+          },
+          "attachments": {
+            "items": {
+              "$ref": "#/components/schemas/Upload"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Attachments"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "requestId",
+          "subject",
+          "body"
+        ],
+        "title": "NewTicket"
+      },
+      "RawEnvironmentInput": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "maxLength": 262144,
+            "title": "Content"
+          },
+          "expectedRevision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Expectedrevision"
+          },
+          "newValuesSecret": {
+            "type": "boolean",
+            "title": "Newvaluessecret",
+            "default": true
+          },
+          "confirmRemovals": {
+            "type": "boolean",
+            "title": "Confirmremovals",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "content",
+          "expectedRevision"
+        ],
+        "title": "RawEnvironmentInput"
+      },
+      "RecoverInput": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "resume",
+              "rollback"
+            ],
+            "title": "Action"
+          },
+          "confirmation": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 2,
+            "title": "Confirmation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action",
+          "confirmation"
+        ],
+        "title": "RecoverInput"
+      },
+      "Reply": {
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Requestid"
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 5000,
+            "minLength": 2,
+            "title": "Body"
+          },
+          "attachments": {
+            "items": {
+              "$ref": "#/components/schemas/Upload"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Attachments"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "requestId",
+          "body"
+        ],
+        "title": "Reply"
+      },
+      "Resources": {
+        "properties": {
+          "memoryLimitMb": {
+            "type": "integer",
+            "maximum": 1048576,
+            "minimum": 64,
+            "title": "Memorylimitmb"
+          },
+          "cpuLimitPercent": {
+            "type": "integer",
+            "multipleOf": 5,
+            "maximum": 25600,
+            "minimum": 5,
+            "title": "Cpulimitpercent"
+          },
+          "storageLimitMb": {
+            "type": "integer",
+            "maximum": 10485760,
+            "minimum": 64,
+            "title": "Storagelimitmb"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "memoryLimitMb",
+          "cpuLimitPercent",
+          "storageLimitMb"
+        ],
+        "title": "Resources"
+      },
+      "RestoreInput": {
+        "properties": {
+          "confirmation": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 2,
+            "title": "Confirmation"
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Requestid"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "confirmation",
+          "requestId"
+        ],
+        "title": "RestoreInput"
+      },
+      "Revision": {
+        "properties": {
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "revision"
+        ],
+        "title": "Revision"
+      },
+      "RevisionInput": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "revision"
+        ],
+        "title": "RevisionInput"
+      },
+      "RuntimeInput": {
+        "properties": {
+          "runtime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 30
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Runtime"
+          },
+          "version": {
+            "type": "string",
+            "maxLength": 30,
+            "minLength": 1,
+            "title": "Version"
+          },
+          "startCommand": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Startcommand"
+          },
+          "confirmation": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 2,
+            "title": "Confirmation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "version",
+          "confirmation"
+        ],
+        "title": "RuntimeInput"
+      },
+      "SettingsInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 2,
+            "pattern": "^[\\w .-]+$",
+            "title": "Name"
+          },
+          "runtime": {
+            "type": "string",
+            "title": "Runtime"
+          },
+          "runtimeVersion": {
+            "type": "string",
+            "title": "Runtimeversion"
+          },
+          "branch": {
+            "type": "string",
+            "pattern": "^[\\w./-]{1,100}$",
+            "title": "Branch"
+          },
+          "startCommand": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Startcommand"
+          },
+          "notifications": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Notifications"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "runtime",
+          "runtimeVersion",
+          "branch",
+          "startCommand",
+          "notifications"
+        ],
+        "title": "SettingsInput"
+      },
+      "SyncInput": {
+        "properties": {
+          "repository": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 3,
+            "title": "Repository"
+          },
+          "branch": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Branch",
+            "default": ""
+          },
+          "access": {
+            "type": "string",
+            "enum": [
+              "public",
+              "connection"
+            ],
+            "title": "Access",
+            "default": "public"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "merge",
+              "replace",
+              "folder"
+            ],
+            "title": "Mode",
+            "default": "merge"
+          },
+          "directory": {
+            "type": "string",
+            "maxLength": 64,
+            "title": "Directory",
+            "default": ""
+          },
+          "autoPull": {
+            "type": "boolean",
+            "title": "Autopull",
+            "default": false
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Revision"
+          },
+          "confirmation": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 2,
+            "title": "Confirmation"
+          },
+          "requestId": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_-]{16,64}$",
+            "title": "Requestid"
+          },
+          "restart": {
+            "type": "boolean",
+            "title": "Restart",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "repository",
+          "revision",
+          "confirmation",
+          "requestId"
+        ],
+        "title": "SyncInput"
+      },
+      "ToggleInput": {
+        "properties": {
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Revision"
+          },
+          "autoPull": {
+            "type": "boolean",
+            "title": "Autopull"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "revision",
+          "autoPull"
+        ],
+        "title": "ToggleInput"
+      },
+      "Upload": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "data": {
+            "type": "string",
+            "maxLength": 5592408,
+            "minLength": 1,
+            "title": "Data"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "data"
+        ],
+        "title": "Upload"
+      },
+      "UploadBatchInput": {
+        "properties": {
+          "files": {
+            "items": {
+              "$ref": "#/components/schemas/UploadInput"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 1,
+            "title": "Files"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "files"
+        ],
+        "title": "UploadBatchInput"
+      },
+      "UploadInput": {
+        "properties": {
+          "path": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Path"
+          },
+          "data": {
+            "type": "string",
+            "maxLength": 5333336,
+            "title": "Data"
+          },
+          "overwrite": {
+            "type": "boolean",
+            "title": "Overwrite",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "path",
+          "data"
+        ],
+        "title": "UploadInput"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "BotkeepKey": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
